@@ -6,13 +6,13 @@
 //  Copyright © 2018年 Easer. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "EasyViewController.h"
 
-@interface ViewController ()
+@interface EasyViewController ()
 
 @end
 
-@implementation ViewController
+@implementation EasyViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

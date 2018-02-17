@@ -12,8 +12,37 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
+// 定义这个常量，就可以不用在开发过程中使用"mas_"前缀。
+#define MAS_SHORTHAND
+// 定义这个常量，就可以让Masonry帮我们自动把基础数据类型的数据，自动装箱为对象类型。
+#define MAS_SHORTHAND_GLOBALS
+
+#import "UrlsManager.h"
+#import "KeyWordString.h"
+#import "EasyMacros.h"
+#import "EasyCategory.h"
+#import "RootSessionDataTask.h"
+#import "BooheeSessionDataTask.h"
+#import "HTTPParser.h"
+
+#import <AvoidCrash.h>
+#import <JPFPSStatus.h>
+#import <Masonry.h>
+#import <MJExtension.h>
+#import <MJRefresh.h>
+#import <ReactiveCocoa.h>
+#import <ReactiveViewModel.h>
+#import <UIImageView+WebCache.h>
+#import <UIButton+WebCache.h>
+#import <TYAttributedLabel.h>
+#import <YYText.h>
+#import <TFHpple.h>
+
+
+#define PlaceHolderImage [UIImage imageNamed:@"PlaceHolder_Img"]
+
 #endif /* PrefixHeader_pch */
 
 
-#define WeakSelf(weakSelf)  __weak __typeof(&*self)weakSelf = self
-#define StrongSelf(strongSelf) __strong __typeof(&*self)strongSelf = self
+
+

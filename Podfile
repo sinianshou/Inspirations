@@ -5,9 +5,11 @@ pod 'Masonry'
 pod 'ReactiveViewModel’
 pod 'SDWebImage'
 pod 'MJRefresh'
+pod 'MJExtension’
 pod 'AvoidCrash'
 pod 'YYText'
 pod 'TYAttributedLabel'
 pod 'JPFPSStatus'
+pod 'TFHpple'
 
 end

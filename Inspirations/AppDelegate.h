@@ -13,14 +13,14 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
 @property (readonly, strong) NSPersistentContainer *persistentContainer;
-
-
 @property (strong, nonatomic) LoginButton* circleMenu;
 
 - (void)saveContext;
 
 
+- (void)updateAccessToken;
+- (NSString*)accessToken;
+- (void)updateCurrentUserInfo;
 @end
 
