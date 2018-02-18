@@ -14,6 +14,9 @@
 @property (nonatomic, weak) id<Easy3DSemicircleViewDataSource> dataSource;
 @property (nonatomic, weak) id<Easy3DSemicircleViewDelegate> delegate;
 
+@property (nonatomic, strong) NSString * reuseIdentifier;
 
 @property (nonatomic, assign) NSUInteger numberOfRows;
+
+-(Easy3DSemicircleViewCell*)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 @end

@@ -10,7 +10,8 @@
 #import "EasyFlowerView.h"
 #import "EasyFlowerViewCell.h"
 #import "Easy3DSemicircleView.h"
-#import "Easy3DSemicircleViewCell.h"
+//#import "Easy3DSemicircleViewCell.h"
+#import "CategoryCell.h"
 
 @interface CategoryListVC ()<Easy3DSemicircleViewDataSource>
 
@@ -51,8 +52,12 @@
     return 40;
 }
 -(Easy3DSemicircleViewCell *)easy3DSemicircleView:(Easy3DSemicircleView *)easy3DSemicircleView cellForRow:(NSInteger)row{
-    Easy3DSemicircleViewCell *cell = [[Easy3DSemicircleViewCell alloc] init];
+    CategoryCell *cell = (CategoryCell *)[easy3DSemicircleView dequeueReusableCellWithIdentifier:self.easy3DSemicircleView.reuseIdentifier];
+    if(!cell){
+        cell = [[CategoryCell alloc] initWithStyle:Easy3DSemicircleViewCellStyleNone reuseIdentifier:self.easy3DSemicircleView.reuseIdentifier];
+    }
     cell.title = [NSString stringWithFormat:@"row is %ld", row];
+    cell.laText = [NSString stringWithFormat:@"%ld", row];
     cell.backgroundColor = Easy_RandomColor;
     return cell;
 }
