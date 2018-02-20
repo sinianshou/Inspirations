@@ -20,4 +20,5 @@
 @property (nonatomic, assign) NSUInteger numberOfRows;
 
 -(Easy3DSemicircleViewCell*)dequeueReusableCellWithIdentifier:(NSString *)identifier inRow:(NSInteger)row;
+//- (void)reloadData;
 @end

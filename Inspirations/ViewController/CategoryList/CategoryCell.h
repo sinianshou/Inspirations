@@ -10,5 +10,5 @@
 @interface CategoryCell : Easy3DSemicircleViewCell
 
 @property (nonatomic, strong) NSString* laText;
-
+@property (nonatomic, strong) NSMutableAttributedString* attrText;
 @end

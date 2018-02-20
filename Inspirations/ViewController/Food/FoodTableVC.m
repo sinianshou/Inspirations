@@ -9,6 +9,7 @@
 #import "FoodTableVC.h"
 #import "FoodTableViewCell.h"
 #import "CategoryListVC.h"
+#import "FoodCategoryModel.h"
 
 @interface FoodTableVC ()
 
@@ -77,8 +78,10 @@
 
 #pragma mark - Table view delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    FoodCategoryModel *model = [self.dataSource_MutableDic.allValues objectAtIndex:indexPath.row];
     CategoryListVC *vc = [[CategoryListVC alloc] init];
     vc.title = @"分类";
+    vc.requestURLString = model.detailURLString;
     [self.navigationController pushViewController:vc animated:YES];
 }
 /*

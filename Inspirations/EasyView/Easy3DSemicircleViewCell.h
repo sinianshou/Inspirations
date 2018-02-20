@@ -18,5 +18,7 @@ typedef NS_ENUM(NSInteger, Easy3DSemicircleViewCellStyle) {
 @property (nonatomic, strong) NSString* reuseIdentifier;
 @property (nonatomic, assign) Easy3DSemicircleViewCellStyle style;
 
+@property (nonatomic, strong) id model;
+
 - (instancetype)initWithStyle:(Easy3DSemicircleViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 @end

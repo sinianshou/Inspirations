@@ -21,6 +21,7 @@
 		5F706A002036D00F00F96971 /* Easy3DSemicircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7069FF2036D00F00F96971 /* Easy3DSemicircleView.m */; };
 		5F706A032036D02100F96971 /* Easy3DSemicircleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F706A022036D02100F96971 /* Easy3DSemicircleViewCell.m */; };
 		5F706A0E2039B58700F96971 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F706A0D2039B58700F96971 /* CategoryCell.m */; };
+		5F706A13203C03CC00F96971 /* CategoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F706A12203C03CC00F96971 /* CategoryListModel.m */; };
 		5F95B7642032EB6C00752B3A /* HTTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F95B7632032EB6C00752B3A /* HTTPParser.m */; };
 		5F95B7692032F05D00752B3A /* SearchListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F95B7682032F05D00752B3A /* SearchListCollectionViewCell.m */; };
 		5F95B76C2032F09400752B3A /* SearchListCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F95B76B2032F09400752B3A /* SearchListCellModel.m */; };
@@ -114,6 +115,8 @@
 		5F706A0B2038599F00F96971 /* EasyCustomClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyCustomClass.h; sourceTree = "<group>"; };
 		5F706A0C2039B58700F96971 /* CategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		5F706A0D2039B58700F96971 /* CategoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
+		5F706A11203C03CC00F96971 /* CategoryListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryListModel.h; sourceTree = "<group>"; };
+		5F706A12203C03CC00F96971 /* CategoryListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryListModel.m; sourceTree = "<group>"; };
 		5F95B7622032EB6C00752B3A /* HTTPParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPParser.h; sourceTree = "<group>"; };
 		5F95B7632032EB6C00752B3A /* HTTPParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPParser.m; sourceTree = "<group>"; };
 		5F95B7672032F05D00752B3A /* SearchListCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchListCollectionViewCell.h; sourceTree = "<group>"; };
@@ -273,12 +276,30 @@
 		5F7069F92036815800F96971 /* CategoryList */ = {
 			isa = PBXGroup;
 			children = (
+				5F706A10203C002200F96971 /* view */,
+				5F706A0F203C001800F96971 /* model */,
 				5F7069FA2036818F00F96971 /* CategoryListVC.h */,
 				5F7069FB2036818F00F96971 /* CategoryListVC.m */,
 				5F706A0C2039B58700F96971 /* CategoryCell.h */,
 				5F706A0D2039B58700F96971 /* CategoryCell.m */,
+				5F706A11203C03CC00F96971 /* CategoryListModel.h */,
+				5F706A12203C03CC00F96971 /* CategoryListModel.m */,
 			);
 			path = CategoryList;
+			sourceTree = "<group>";
+		};
+		5F706A0F203C001800F96971 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		5F706A10203C002200F96971 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		5F95B7652032EDEA00752B3A /* SearchList */ = {
@@ -770,6 +791,7 @@
 				5F9DD4FA202B4C330063D9D0 /* RootSessionDataTask.m in Sources */,
 				5F7069DE2035BA9800F96971 /* NSData+EasyExchange.m in Sources */,
 				5F9DD511202C259C0063D9D0 /* RootWebViewConfiguration.m in Sources */,
+				5F706A13203C03CC00F96971 /* CategoryListModel.m in Sources */,
 				5F95B77C20344F7C00752B3A /* RootTableCell.m in Sources */,
 				5F7069FC2036818F00F96971 /* CategoryListVC.m in Sources */,
 				5F706A0E2039B58700F96971 /* CategoryCell.m in Sources */,

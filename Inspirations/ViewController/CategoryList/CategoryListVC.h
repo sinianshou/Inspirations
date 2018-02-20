@@ -8,6 +8,11 @@
 
 #import "RootViewController.h"
 
+@class CategoryListModel;
+
 @interface CategoryListVC : RootViewController
+
+@property (nonatomic, strong) CategoryListModel *model;
+@property (nonatomic, strong) NSString *requestURLString;
 
 @end

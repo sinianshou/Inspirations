@@ -122,4 +122,10 @@
     
     return dicM;
 }
++(NSMutableDictionary *)ParseBooheeFoodCategoryPageWithHTMLData:(NSData *)theData{
+    NSMutableDictionary *dicM = [NSMutableDictionary dictionary];
+    
+    
+    return dicM;
+}
 @end

@@ -44,6 +44,9 @@
 }
 -(void)didMoveToWindow{
     NSLog(@"Please Complete %s", __func__);
+    [self loadData];
+}
+- (void)loadData{
     self.numberOfRows = [self.dataSource numberOfRowsInEasy3DSemicircleView:self];
     if (self.dataSource && self.numberOfRows>0) {
         self.cellQueueDicM = [NSMutableDictionary dictionary];
@@ -59,7 +62,11 @@
         
         UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(viewTransformWithPanGestureRecognizer:)];
         [self addGestureRecognizer:panGesture];
-        
+        [self reloadData];
+    }
+}
+- (void)reloadData{
+    if (self.dataSource && self.numberOfRows>0) {
         for (int i=0; i<self.numberOfRows; ++i) {
             Easy3DSemicircleViewCell *cell = [self getCellInRow:i];
             if (cell) {
@@ -80,7 +87,6 @@
         [self refreshCellContainerWithAngle:0];
         [self logFrontAndRearTitleTransform];
     }
-    
 }
 -(BOOL)isFrontTitleLayerAppear{
     return self.frontTitleLayer.transform.m11>0 && self.frontTitleLayer.transform.m13>0;
@@ -229,6 +235,7 @@ int timerCounts;
     titleLayer.wrapped = YES; //choose a font
     titleLayer.font = fontRef;
     titleLayer.fontSize = font.pointSize;
+    titleLayer.foregroundColor = [UIColor blackColor].CGColor;
     titleLayer.contentsScale = [UIScreen mainScreen].scale;
     [self.menuLayer addSublayer:titleLayer];
     titleLayer.transform = transform;
@@ -305,7 +312,7 @@ int timerCounts;
     if (!_cellContainer) {
         _cellContainer = [[UIView alloc] init];
         _cellContainer.backgroundColor = [UIColor clearColor];
-        _cellContainer.frame = CGRectMake(10, CGRectGetHeight(self.bounds)/6, CGRectGetWidth(self.bounds)*0.5, CGRectGetHeight(self.bounds)*0.5);
+        _cellContainer.frame = CGRectMake(10, CGRectGetHeight(self.bounds)*0.08, CGRectGetWidth(self.bounds)*0.5, CGRectGetHeight(self.bounds)*0.5);
         CATransform3D mainTrans = CATransform3DIdentity;
         //        mainTrans.m34 = -1.0/1000;
         mainTrans.m34 = -1/1000;
