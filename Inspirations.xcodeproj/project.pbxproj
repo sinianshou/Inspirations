@@ -20,7 +20,6 @@
 		5F7069FC2036818F00F96971 /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7069FB2036818F00F96971 /* CategoryListVC.m */; };
 		5F706A002036D00F00F96971 /* Easy3DSemicircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7069FF2036D00F00F96971 /* Easy3DSemicircleView.m */; };
 		5F706A032036D02100F96971 /* Easy3DSemicircleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F706A022036D02100F96971 /* Easy3DSemicircleViewCell.m */; };
-		5F706A0A2038597800F96971 /* EasyCATransform3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F706A092038597800F96971 /* EasyCATransform3D.m */; };
 		5F706A0E2039B58700F96971 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F706A0D2039B58700F96971 /* CategoryCell.m */; };
 		5F95B7642032EB6C00752B3A /* HTTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F95B7632032EB6C00752B3A /* HTTPParser.m */; };
 		5F95B7692032F05D00752B3A /* SearchListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F95B7682032F05D00752B3A /* SearchListCollectionViewCell.m */; };
@@ -112,8 +111,6 @@
 		5F706A012036D02100F96971 /* Easy3DSemicircleViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Easy3DSemicircleViewCell.h; sourceTree = "<group>"; };
 		5F706A022036D02100F96971 /* Easy3DSemicircleViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Easy3DSemicircleViewCell.m; sourceTree = "<group>"; };
 		5F706A042036D04000F96971 /* Easy3DSemicircleViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Easy3DSemicircleViewProtocol.h; sourceTree = "<group>"; };
-		5F706A082038597800F96971 /* EasyCATransform3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyCATransform3D.h; sourceTree = "<group>"; };
-		5F706A092038597800F96971 /* EasyCATransform3D.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EasyCATransform3D.m; sourceTree = "<group>"; };
 		5F706A0B2038599F00F96971 /* EasyCustomClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyCustomClass.h; sourceTree = "<group>"; };
 		5F706A0C2039B58700F96971 /* CategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		5F706A0D2039B58700F96971 /* CategoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
@@ -445,8 +442,6 @@
 				5F95B77720344F5800752B3A /* EasyTableViewCell.h */,
 				5F95B77820344F5800752B3A /* EasyTableViewCell.m */,
 				5F706A0B2038599F00F96971 /* EasyCustomClass.h */,
-				5F706A082038597800F96971 /* EasyCATransform3D.h */,
-				5F706A092038597800F96971 /* EasyCATransform3D.m */,
 			);
 			path = EasyViewController;
 			sourceTree = "<group>";
@@ -765,7 +760,6 @@
 				5F95B7692032F05D00752B3A /* SearchListCollectionViewCell.m in Sources */,
 				5F7069F8203680E100F96971 /* EasyFlowerViewCell.m in Sources */,
 				5FABE78E202DC01600D8FFB4 /* RootViewController.m in Sources */,
-				5F706A0A2038597800F96971 /* EasyCATransform3D.m in Sources */,
 				5F9DD4EB202B22720063D9D0 /* EasyCollectionViewCell.m in Sources */,
 				5F9DD50B202C24FC0063D9D0 /* RootWebView.m in Sources */,
 				5F7069ED2035BC7D00F96971 /* NSMutableArray+EasyAvoidNil.m in Sources */,

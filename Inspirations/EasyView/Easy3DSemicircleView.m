@@ -5,28 +5,30 @@
 //  Created by Easer on 2018/2/16.
 //  Copyright © 2018年 Easer. All rights reserved.
 //
+/*
+ cell.frame 会因未知原因导致与self.cellContainer.bounds不一致
+ 当cell数量《=2时需要处理
+ 需要defaultCell来填补空白cell以及topcell
+ */
 
 #import "Easy3DSemicircleView.h"
 #import "Easy3DSemicircleViewCell.h"
-#import "EasyCATransform3D.h"
-
-typedef struct Easy3DSemicircleViewCellNode {
-    __unsafe_unretained Easy3DSemicircleViewCell *cell;
-    NSInteger row;
-    __unsafe_unretained NSString *reuseIdentifier;
-}Easy3DSemicircleViewCellNode;
 
 @interface Easy3DSemicircleView ()
 
-@property (nonatomic, strong) CALayer *menuLayer;
-@property (nonatomic, assign) CGPoint zeroPoint;
 @property (nonatomic, strong) UIView *cellContainer;
 @property (nonatomic, strong) NSMutableDictionary <NSString*, Easy3DSemicircleViewCell*>*cellQueueDicM;
+@property (nonatomic, strong) NSMutableDictionary <NSString*, Easy3DSemicircleViewCell*>*visiableCellDicM;
 @property (nonatomic, strong) Easy3DSemicircleViewCell *currentCell;
 @property (nonatomic, strong) Easy3DSemicircleViewCell *leftCell;
 @property (nonatomic, strong) Easy3DSemicircleViewCell *rightCell;
 @property (nonatomic, strong) Easy3DSemicircleViewCell *behindCell;
+@property (nonatomic, strong) Easy3DSemicircleViewCell *leftDefaultCell;
+@property (nonatomic, strong) Easy3DSemicircleViewCell *rightDefaultCell;
+@property (nonatomic, strong) Easy3DSemicircleViewCell *topDefaultCell;
 
+@property (nonatomic, strong) CALayer *menuLayer;
+@property (nonatomic, assign) CGPoint zeroPoint;
 @property (nonatomic, strong) CATextLayer *frontTitleLayer;
 @property (nonatomic, strong) CATextLayer *currentTitleLayer;
 @property (nonatomic, strong) CATextLayer *rearTitleLayer;
@@ -42,21 +44,24 @@ typedef struct Easy3DSemicircleViewCellNode {
 }
 -(void)didMoveToWindow{
     NSLog(@"Please Complete %s", __func__);
-    if (self.dataSource) {
+    self.numberOfRows = [self.dataSource numberOfRowsInEasy3DSemicircleView:self];
+    if (self.dataSource && self.numberOfRows>0) {
         self.cellQueueDicM = [NSMutableDictionary dictionary];
+        self.visiableCellDicM = [NSMutableDictionary dictionary];
         self.titleLayerArrM = [NSMutableArray array];
+        self.titleLayertextColor = [UIColor clearColor];
+        self.layer.masksToBounds = YES;
         for (int i=0; i<24; ++i) {
             CATransform3D transform = CATransform3DMakeRotation(2*M_PI/24*i, 0, 1, 0);
             CATextLayer *titleLayer = [self createTitleLayerWithTransform:transform];
             [self.titleLayerArrM addObject:titleLayer];
         }
-        self.numberOfRows = [self.dataSource numberOfRowsInEasy3DSemicircleView:self];
         
         UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(viewTransformWithPanGestureRecognizer:)];
         [self addGestureRecognizer:panGesture];
         
         for (int i=0; i<self.numberOfRows; ++i) {
-            Easy3DSemicircleViewCell *cell = [self.dataSource easy3DSemicircleView:self cellForRow:i];
+            Easy3DSemicircleViewCell *cell = [self getCellInRow:i];
             if (cell) {
                 CATextLayer *titleLayer = [self.titleLayerArrM objectAtIndex:i];
                 [self configTitleLayer:titleLayer InRow:i];
@@ -132,6 +137,17 @@ int timerCounts;
         NSInteger index = [self.titleLayerArrM indexOfObject:self.frontTitleLayer]+1;
         index = index%self.titleLayerArrM.count;
         self.frontTitleLayer.hidden = YES;
+        
+        NSInteger row = self.frontTitleLayer.name.integerValue;
+        Easy3DSemicircleViewCell *cell = [self getCellInRow:row];
+        [self.visiableCellDicM removeObjectForKey:[NSString stringWithFormat:@"%ld", row]];
+        if (![self.cellQueueDicM.allKeys containsObject:cell.reuseIdentifier]) {
+            [self.cellQueueDicM setValue:cell forKey:cell.reuseIdentifier];
+            cell.hidden = YES;
+        }else{
+            [cell removeFromSuperview];
+        }
+        
         self.frontTitleLayer = [self.titleLayerArrM objectAtIndex:index];
     }
 }
@@ -178,13 +194,21 @@ int timerCounts;
         NSInteger index = [self.titleLayerArrM indexOfObject:self.rearTitleLayer]-1;
         index = (index==-1)?(self.titleLayerArrM.count-1):index;
         self.rearTitleLayer.hidden = YES;
+        NSInteger row = self.rearTitleLayer.name.integerValue;
+        Easy3DSemicircleViewCell *cell = [self getCellInRow:row];
+        [self.visiableCellDicM removeObjectForKey:[NSString stringWithFormat:@"%ld", row]];
+        if (![self.cellQueueDicM.allKeys containsObject:cell.reuseIdentifier]) {
+            [self.cellQueueDicM setValue:cell forKey:cell.reuseIdentifier];
+            cell.hidden = YES;
+        }else{
+            [cell removeFromSuperview];
+        }
         self.rearTitleLayer = [self.titleLayerArrM objectAtIndex:index];
-        
     }
 }
 - (void)configTitleLayer:(CATextLayer*)titleLayer InRow:(NSInteger)row{
     if(self.dataSource){
-        Easy3DSemicircleViewCell *cell = [self.dataSource easy3DSemicircleView:self cellForRow:row];
+        Easy3DSemicircleViewCell *cell = [self getCellInRow:row];
         titleLayer.string = cell.title;
         titleLayer.name = [NSString stringWithFormat:@"%ld", row];
     }
@@ -196,7 +220,8 @@ int timerCounts;
     CGFontRef fontRef = CGFontCreateWithFontName(fontName);
     CATextLayer *titleLayer = [CATextLayer layer];
     titleLayer.alignmentMode = kCAAlignmentCenter;
-    titleLayer.backgroundColor = Easy_RandomColor.CGColor;
+    titleLayer.truncationMode = kCATruncationEnd;
+    titleLayer.backgroundColor = self.titleLayertextColor.CGColor;
     titleLayer.hidden = YES;
     titleLayer.name = [NSString stringWithFormat:@"%d", -1];
     titleLayer.anchorPoint = CGPointMake(-2, 0.5);
@@ -228,12 +253,18 @@ int timerCounts;
         //缺少模拟重力的翻转量
         obj.transform = CATransform3DRotate(obj.transform, angleX, 0, 1, 0);
     }];
-    
+    /*
+     2*M_PI/24
+     2*M_PI/4
+     angleX*6
+     */
     [self refreshFrontTitleLayerIndex];
     [self refreshCurrentTitleLayer];
     [self refreshCellContainerWithAngle:angleX];
     [self refreshRearTitleLayerIndex];
     [self logFrontAndRearTitleTransform];
+    
+    
 }
 -(void)logFrontAndRearTitleTransform{
     NSLog(@"frontTitleLayer %@ transform is {%f %f %f %f} {%f %f %f %f} {%f %f %f %f} {%f %f %f %f}", self.frontTitleLayer.string, self.frontTitleLayer.transform.m11, self.frontTitleLayer.transform.m12, self.frontTitleLayer.transform.m13, self.frontTitleLayer.transform.m14, self.frontTitleLayer.transform.m21, self.frontTitleLayer.transform.m22, self.frontTitleLayer.transform.m23, self.frontTitleLayer.transform.m24, self.frontTitleLayer.transform.m31, self.frontTitleLayer.transform.m32, self.frontTitleLayer.transform.m33, self.frontTitleLayer.transform.m34, self.frontTitleLayer.transform.m41, self.frontTitleLayer.transform.m42, self.frontTitleLayer.transform.m43, self.frontTitleLayer.transform.m44);
@@ -264,8 +295,8 @@ int timerCounts;
         CATransform3D mainTrans = CATransform3DIdentity;
 //        mainTrans.m34 = -1.0/1000;
         mainTrans.m34 = -1/1000;
-        _menuLayer.sublayerTransform = CATransform3DRotate(mainTrans, -M_PI/6, 1, 0, 0);
-        _menuLayer.masksToBounds = YES;
+        _menuLayer.sublayerTransform = CATransform3DRotate(mainTrans, -M_PI/4, 1, 0, 0);
+//        _menuLayer.masksToBounds = YES;
         [self.layer addSublayer:_menuLayer];
     }
     return _menuLayer;
@@ -273,8 +304,12 @@ int timerCounts;
 -(UIView *)cellContainer{
     if (!_cellContainer) {
         _cellContainer = [[UIView alloc] init];
-        _cellContainer.backgroundColor = [UIColor brownColor];
+        _cellContainer.backgroundColor = [UIColor clearColor];
         _cellContainer.frame = CGRectMake(10, CGRectGetHeight(self.bounds)/6, CGRectGetWidth(self.bounds)*0.5, CGRectGetHeight(self.bounds)*0.5);
+        CATransform3D mainTrans = CATransform3DIdentity;
+        //        mainTrans.m34 = -1.0/1000;
+        mainTrans.m34 = -1/1000;
+        _cellContainer.layer.sublayerTransform = CATransform3DRotate(mainTrans, -M_PI/30, 1, 0, 0);
         [self addSubview:_cellContainer];
     }
     return _cellContainer;
@@ -282,87 +317,76 @@ int timerCounts;
 
 #pragma mark ---- CellContainer Cube Methods
 - (void)refreshCellContainerWithAngle:(CGFloat)angleX{
-//    self.cellContainer;
     if (self.currentTitleLayer) {
         NSInteger currentRow = self.currentTitleLayer.name.integerValue;
         NSInteger leftRow = self.currentTitleLayer.name.integerValue-1;
         leftRow = leftRow<-1?-1:leftRow;
         NSInteger rightRow = self.currentTitleLayer.name.integerValue+1;
         rightRow = rightRow>=self.numberOfRows?-1:rightRow;
-        NSInteger behindRow = angleX<=0?(rightRow+1):(leftRow-1);
-        behindRow = ((behindRow<-1)||(behindRow>=self.numberOfRows))?-1:behindRow;
-        Easy3DSemicircleViewCell *currentCell = [self.dataSource easy3DSemicircleView:self cellForRow:currentRow];
-        if (![self.cellContainer.subviews containsObject:currentCell]) {
-            currentCell.frame = self.cellContainer.bounds;
-            [self.cellContainer addSubview:currentCell];
-        }
-        self.currentCell = currentCell;
-        /*
-         if(标记有值){
-         
-         }else{
-         
-         }
-         标记是否有值
-         -1 reture nil
-         不是-1 判断是否已显示
-         已显示 直接赋予标记
-         未显示 去队列获取
-         获取到 配置 赋予标记
-         未获取到 创建 赋予标记
-         */
-        Easy3DSemicircleViewCell *leftCell;
-        if (leftRow>=0) {
-            leftCell = [self.dataSource easy3DSemicircleView:self cellForRow:leftRow];
-            if (![self.cellContainer.subviews containsObject:leftCell]) {
-                leftCell.frame = self.cellContainer.bounds;
-                [self.cellContainer addSubview:leftCell];
-            }
-        }
-        self.leftCell = leftCell;
+        NSInteger behindRow = angleX<=0?((rightRow<0)?(-1):(rightRow+1)):(leftRow-1);
+        behindRow = ((behindRow<0)||(behindRow>=self.numberOfRows))?-1:behindRow;
         
-        Easy3DSemicircleViewCell *rightCell;
-        if (rightRow>=0) {
-            rightCell = [self.dataSource easy3DSemicircleView:self cellForRow:rightRow];
-            if (![self.cellContainer.subviews containsObject:rightCell]) {
-                rightCell.frame = self.cellContainer.bounds;
-                [self.cellContainer addSubview:rightCell];
-            }
-        }
-        self.rightCell = rightCell;
+        [self refreshCellProperty:@"_currentCell" inRow:currentRow WithAngle:angleX];
+        [self refreshCellProperty:@"_leftCell" inRow:leftRow WithAngle:angleX];
+        [self refreshCellProperty:@"_rightCell" inRow:rightRow WithAngle:angleX];
+        [self refreshCellProperty:@"_behindCell" inRow:behindRow WithAngle:angleX];
         
-        Easy3DSemicircleViewCell *behindCell;
-        if (behindRow>=0) {
-            behindCell = [self.dataSource easy3DSemicircleView:self cellForRow:behindRow];
-            if (![self.cellContainer.subviews containsObject:behindCell]) {
-                behindCell.frame = self.cellContainer.bounds;
-                [self.cellContainer addSubview:behindCell];
-            }
-        }
-        if(behindCell){
-            if (self.behindCell) {
-                if (![self.behindCell isEqual:behindCell]) {
-                    if ([self.cellQueueDicM.allKeys containsObject:self.behindCell.reuseIdentifier]) {
-                        [self.behindCell removeFromSuperview];
-                    }else{
-                        [self.cellQueueDicM setObject:self.behindCell forKey:self.behindCell.reuseIdentifier];
-                        self.behindCell.hidden = YES;
-                    }
-                }
-            }
-            self.behindCell = behindCell;
-        }
+        self.currentCell.layer.transform = CATransform3DRotate(self.currentCell.layer.transform, angleX*6, 0, 1, 0);
+        self.leftCell.layer.transform = CATransform3DRotate(self.currentCell.layer.transform, -M_PI_2, 0, 1, 0);
+        self.rightCell.layer.transform = CATransform3DRotate(self.currentCell.layer.transform, M_PI_2, 0, 1, 0);
+        self.behindCell.layer.transform = CATransform3DRotate(self.currentCell.layer.transform, M_PI, 0, 1, 0);
     }
     
 }
-
--(Easy3DSemicircleViewCell*)dequeueReusableCellWithIdentifier:(NSString *)identifier{
+- (void)refreshCellProperty:(NSString *)cellPropertyString inRow:(NSInteger)row WithAngle:(CGFloat)angleX{
+    
+    Easy3DSemicircleViewCell *cell = [self getCellInRow:row];
+    const char* propertyName = [cellPropertyString UTF8String];
+    Ivar ivar = class_getInstanceVariable([self class], propertyName);
+    Easy3DSemicircleViewCell *cellProperty = object_getIvar(self, ivar);
+    if (![cellProperty isEqual:cell]) {
+        if ([cellPropertyString isEqualToString:@"_leftCell"]) {
+            cellProperty.hidden = angleX<0?YES:NO;
+        }else if ([cellPropertyString isEqualToString:@"_rightCell"]){
+            cellProperty.hidden = angleX>0?YES:NO;
+        }else if ([cellPropertyString isEqualToString:@"_behindCell"]){
+            cellProperty.hidden = YES;
+        }
+        object_setIvar(self, ivar, cell);
+    }
+    if (cell.hidden) {
+        cell.hidden = NO;
+    }
+    
+}
+- (Easy3DSemicircleViewCell*)getCellInRow:(NSInteger)row{
+    Easy3DSemicircleViewCell *cell;
+    if (row>=0) {
+        NSString *rowStr = [NSString stringWithFormat:@"%ld", row];
+        if ([self.visiableCellDicM.allKeys containsObject:rowStr]) {
+            cell = [self.visiableCellDicM objectForKey:rowStr];
+        }
+        if (!cell && self.dataSource) {
+            cell = [self.dataSource easy3DSemicircleView:self cellForRow:row];
+            cell.hidden = YES;
+            cell.frame = self.cellContainer.bounds;  //frame 会因未知原因导致与self.cellContainer.bounds不一致
+            cell.layer.anchorPointZ = -CGRectGetWidth(self.cellContainer.bounds)*0.5;
+//            cell.layer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
+            [self.cellContainer addSubview:cell];
+            [self.visiableCellDicM setValue:cell forKey:rowStr];
+            NSLog(@"in row %ld , za is %f, frame is %@, bounds is %@", row, cell.layer.anchorPointZ, NSStringFromCGRect(cell.frame), NSStringFromCGRect(self.cellContainer.bounds));
+        }
+    }
+    return cell;
+}
+-(Easy3DSemicircleViewCell*)dequeueReusableCellWithIdentifier:(NSString *)identifier inRow:(NSInteger)row{
     Easy3DSemicircleViewCell *cell;
     if ([self.cellQueueDicM.allKeys containsObject:identifier]) {
         cell = [self.cellQueueDicM objectForKey:identifier];
-        cell.hidden = NO;
+        cell.hidden = YES;
         [self.cellQueueDicM removeObjectForKey:identifier];
     }
+    
     return cell;
 }
 @end

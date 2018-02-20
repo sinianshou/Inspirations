@@ -9,6 +9,6 @@
 #ifndef EasyCustomClass_h
 #define EasyCustomClass_h
 
-#import "EasyCATransform3D.h"
+
 
 #endif /* EasyCustomClass_h */

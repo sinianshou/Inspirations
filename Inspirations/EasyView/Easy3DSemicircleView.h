@@ -15,8 +15,9 @@
 @property (nonatomic, weak) id<Easy3DSemicircleViewDelegate> delegate;
 
 @property (nonatomic, strong) NSString * reuseIdentifier;
+@property (nonatomic, strong) UIColor *titleLayertextColor;
 
 @property (nonatomic, assign) NSUInteger numberOfRows;
 
--(Easy3DSemicircleViewCell*)dequeueReusableCellWithIdentifier:(NSString *)identifier;
+-(Easy3DSemicircleViewCell*)dequeueReusableCellWithIdentifier:(NSString *)identifier inRow:(NSInteger)row;
 @end

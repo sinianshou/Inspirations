@@ -49,10 +49,10 @@
 #pragma mark ---- Methods
 #pragma mark ---- Easy3DSemicircleViewDataSource
 -(NSInteger)numberOfRowsInEasy3DSemicircleView:(Easy3DSemicircleView *)easy3DSemicircleView{
-    return 40;
+    return 20;
 }
 -(Easy3DSemicircleViewCell *)easy3DSemicircleView:(Easy3DSemicircleView *)easy3DSemicircleView cellForRow:(NSInteger)row{
-    CategoryCell *cell = (CategoryCell *)[easy3DSemicircleView dequeueReusableCellWithIdentifier:self.easy3DSemicircleView.reuseIdentifier];
+    CategoryCell *cell = (CategoryCell *)[easy3DSemicircleView dequeueReusableCellWithIdentifier:self.easy3DSemicircleView.reuseIdentifier inRow:row];
     if(!cell){
         cell = [[CategoryCell alloc] initWithStyle:Easy3DSemicircleViewCellStyleNone reuseIdentifier:self.easy3DSemicircleView.reuseIdentifier];
     }

@@ -20,9 +20,15 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         _label = [[UILabel alloc] init];
-        _label.frame = self.bounds;
+//        _label.frame = self.bounds;
         _label.textColor = [UIColor blueColor];
+        _label.textAlignment = NSTextAlignmentCenter;
+        _label.font = [UIFont systemFontOfSize:18];
         [self addSubview:_label];
+        [_label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.top.right.equalTo(0);
+            make.height.equalTo(20);
+        }];
     }
     return self;
 }
