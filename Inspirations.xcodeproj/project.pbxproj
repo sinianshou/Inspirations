@@ -22,6 +22,12 @@
 		5F706A032036D02100F96971 /* Easy3DSemicircleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F706A022036D02100F96971 /* Easy3DSemicircleViewCell.m */; };
 		5F706A0E2039B58700F96971 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F706A0D2039B58700F96971 /* CategoryCell.m */; };
 		5F706A13203C03CC00F96971 /* CategoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F706A12203C03CC00F96971 /* CategoryListModel.m */; };
+		5F706A16203DA17B00F96971 /* SearchListCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F706A15203DA17B00F96971 /* SearchListCollectionViewController.m */; };
+		5F706A19203DA7D100F96971 /* UIViewController+EasyNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F706A18203DA7D100F96971 /* UIViewController+EasyNavigation.m */; };
+		5F706A1C203DAB5600F96971 /* EasyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F706A1B203DAB5600F96971 /* EasyButton.m */; };
+		5F706A1F203DAB7400F96971 /* SearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F706A1E203DAB7400F96971 /* SearchButton.m */; };
+		5F706A22203DB83E00F96971 /* NSObject+EasyHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F706A21203DB83E00F96971 /* NSObject+EasyHook.m */; };
+		5F706A26203DBF0300F96971 /* UIViewController+Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F706A25203DBF0300F96971 /* UIViewController+Navigation.m */; };
 		5F95B7642032EB6C00752B3A /* HTTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F95B7632032EB6C00752B3A /* HTTPParser.m */; };
 		5F95B7692032F05D00752B3A /* SearchListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F95B7682032F05D00752B3A /* SearchListCollectionViewCell.m */; };
 		5F95B76C2032F09400752B3A /* SearchListCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F95B76B2032F09400752B3A /* SearchListCellModel.m */; };
@@ -117,6 +123,18 @@
 		5F706A0D2039B58700F96971 /* CategoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		5F706A11203C03CC00F96971 /* CategoryListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryListModel.h; sourceTree = "<group>"; };
 		5F706A12203C03CC00F96971 /* CategoryListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryListModel.m; sourceTree = "<group>"; };
+		5F706A14203DA17B00F96971 /* SearchListCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchListCollectionViewController.h; sourceTree = "<group>"; };
+		5F706A15203DA17B00F96971 /* SearchListCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchListCollectionViewController.m; sourceTree = "<group>"; };
+		5F706A17203DA7D000F96971 /* UIViewController+EasyNavigation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+EasyNavigation.h"; sourceTree = "<group>"; };
+		5F706A18203DA7D100F96971 /* UIViewController+EasyNavigation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+EasyNavigation.m"; sourceTree = "<group>"; };
+		5F706A1A203DAB5600F96971 /* EasyButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyButton.h; sourceTree = "<group>"; };
+		5F706A1B203DAB5600F96971 /* EasyButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EasyButton.m; sourceTree = "<group>"; };
+		5F706A1D203DAB7400F96971 /* SearchButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchButton.h; sourceTree = "<group>"; };
+		5F706A1E203DAB7400F96971 /* SearchButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchButton.m; sourceTree = "<group>"; };
+		5F706A20203DB83E00F96971 /* NSObject+EasyHook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+EasyHook.h"; sourceTree = "<group>"; };
+		5F706A21203DB83E00F96971 /* NSObject+EasyHook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+EasyHook.m"; sourceTree = "<group>"; };
+		5F706A24203DBF0300F96971 /* UIViewController+Navigation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Navigation.h"; sourceTree = "<group>"; };
+		5F706A25203DBF0300F96971 /* UIViewController+Navigation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Navigation.m"; sourceTree = "<group>"; };
 		5F95B7622032EB6C00752B3A /* HTTPParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPParser.h; sourceTree = "<group>"; };
 		5F95B7632032EB6C00752B3A /* HTTPParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPParser.m; sourceTree = "<group>"; };
 		5F95B7672032F05D00752B3A /* SearchListCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchListCollectionViewCell.h; sourceTree = "<group>"; };
@@ -269,6 +287,8 @@
 				5F706A012036D02100F96971 /* Easy3DSemicircleViewCell.h */,
 				5F706A022036D02100F96971 /* Easy3DSemicircleViewCell.m */,
 				5F706A042036D04000F96971 /* Easy3DSemicircleViewProtocol.h */,
+				5F706A1A203DAB5600F96971 /* EasyButton.h */,
+				5F706A1B203DAB5600F96971 /* EasyButton.m */,
 			);
 			path = EasyView;
 			sourceTree = "<group>";
@@ -302,11 +322,22 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		5F706A23203DBED400F96971 /* AppCategory */ = {
+			isa = PBXGroup;
+			children = (
+				5F706A24203DBF0300F96971 /* UIViewController+Navigation.h */,
+				5F706A25203DBF0300F96971 /* UIViewController+Navigation.m */,
+			);
+			path = AppCategory;
+			sourceTree = "<group>";
+		};
 		5F95B7652032EDEA00752B3A /* SearchList */ = {
 			isa = PBXGroup;
 			children = (
 				5F95B78520344FFE00752B3A /* View */,
 				5F95B7662032EDF900752B3A /* Model */,
+				5F706A14203DA17B00F96971 /* SearchListCollectionViewController.h */,
+				5F706A15203DA17B00F96971 /* SearchListCollectionViewController.m */,
 			);
 			path = SearchList;
 			sourceTree = "<group>";
@@ -345,6 +376,8 @@
 			children = (
 				5F95B786203451A500752B3A /* FoodTableViewCell.h */,
 				5F95B787203451A500752B3A /* FoodTableViewCell.m */,
+				5F706A1D203DAB7400F96971 /* SearchButton.h */,
+				5F706A1E203DAB7400F96971 /* SearchButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -385,6 +418,7 @@
 			children = (
 				5F9DD4A2202AA7DB0063D9D0 /* AppDelegate.h */,
 				5F9DD4A3202AA7DB0063D9D0 /* AppDelegate.m */,
+				5F706A23203DBED400F96971 /* AppCategory */,
 				5FABE790202DC09200D8FFB4 /* ViewController */,
 				5FABE79D202EF84D00D8FFB4 /* Model */,
 				5FABE79B202E9FB200D8FFB4 /* EasyCategory */,
@@ -546,6 +580,10 @@
 				5F7069E62035BBDE00F96971 /* NSArray+EasyAvoidNil.m */,
 				5F7069EB2035BC7D00F96971 /* NSMutableArray+EasyAvoidNil.h */,
 				5F7069EC2035BC7D00F96971 /* NSMutableArray+EasyAvoidNil.m */,
+				5F706A17203DA7D000F96971 /* UIViewController+EasyNavigation.h */,
+				5F706A18203DA7D100F96971 /* UIViewController+EasyNavigation.m */,
+				5F706A20203DB83E00F96971 /* NSObject+EasyHook.h */,
+				5F706A21203DB83E00F96971 /* NSObject+EasyHook.m */,
 			);
 			path = EasyCategory;
 			sourceTree = "<group>";
@@ -760,6 +798,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F706A26203DBF0300F96971 /* UIViewController+Navigation.m in Sources */,
+				5F706A16203DA17B00F96971 /* SearchListCollectionViewController.m in Sources */,
 				5F9DD508202C24C80063D9D0 /* EasyWebView.m in Sources */,
 				5F95B78220344FC900752B3A /* FoodTableVC.m in Sources */,
 				5F95B76C2032F09400752B3A /* SearchListCellModel.m in Sources */,
@@ -771,6 +811,7 @@
 				5F9DD4E8202B21A70063D9D0 /* RootCollectionViewController.m in Sources */,
 				5F9DD4A7202AA7DB0063D9D0 /* EasyViewController.m in Sources */,
 				5FABE793202DC0B500D8FFB4 /* OAuth2VC.m in Sources */,
+				5F706A19203DA7D100F96971 /* UIViewController+EasyNavigation.m in Sources */,
 				5FABE7B2202FF63700D8FFB4 /* EasyOAuthV2VC.m in Sources */,
 				5F9DD4EE202B2D830063D9D0 /* EasyCollectionViewFlowLayout.m in Sources */,
 				5F9DD4F7202B34610063D9D0 /* EasySessionDataTask.m in Sources */,
@@ -786,9 +827,11 @@
 				5F7069ED2035BC7D00F96971 /* NSMutableArray+EasyAvoidNil.m in Sources */,
 				5F95B77920344F5800752B3A /* EasyTableViewCell.m in Sources */,
 				5F9DD4B5202AA7DB0063D9D0 /* main.m in Sources */,
+				5F706A22203DB83E00F96971 /* NSObject+EasyHook.m in Sources */,
 				5F9DD50E202C25830063D9D0 /* EasyWebViewConfiguration.m in Sources */,
 				5F9DD4DC202AE8BC0063D9D0 /* LoginButton.m in Sources */,
 				5F9DD4FA202B4C330063D9D0 /* RootSessionDataTask.m in Sources */,
+				5F706A1C203DAB5600F96971 /* EasyButton.m in Sources */,
 				5F7069DE2035BA9800F96971 /* NSData+EasyExchange.m in Sources */,
 				5F9DD511202C259C0063D9D0 /* RootWebViewConfiguration.m in Sources */,
 				5F706A13203C03CC00F96971 /* CategoryListModel.m in Sources */,
@@ -803,6 +846,7 @@
 				5F95B7642032EB6C00752B3A /* HTTPParser.m in Sources */,
 				5F7069E42035BBA500F96971 /* NSDictionary+EasyAvoidNil.m in Sources */,
 				5F95B77F20344FA900752B3A /* RootTableViewController.m in Sources */,
+				5F706A1F203DAB7400F96971 /* SearchButton.m in Sources */,
 				5FABE7A9202F0E1600D8FFB4 /* DribbbleUserModel.m in Sources */,
 				5F706A032036D02100F96971 /* Easy3DSemicircleViewCell.m in Sources */,
 				5F9DD4FF202BF41E0063D9D0 /* UrlsManager.m in Sources */,

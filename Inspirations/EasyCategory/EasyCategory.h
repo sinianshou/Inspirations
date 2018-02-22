@@ -23,4 +23,6 @@
 #import "NSArray+EasyAvoidNil.h"
 #import "NSMutableArray+EasyAvoidNil.h"
 
+#pragma mark ---- UIViewController category
+#import "UIViewController+EasyNavigation.h"
 #endif /* EasyCategory_h */

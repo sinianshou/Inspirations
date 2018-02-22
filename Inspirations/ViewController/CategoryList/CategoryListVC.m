@@ -28,7 +28,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"CategoryDetailBackground_Img"]];
     if (self.requestURLString) {
         NSMutableArray *signalArrM = [NSMutableArray array];
-        for (int i=1; i<11; ++i) {
+        for (int i=1; i<12; ++i) {
             RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
                 //?page=1
                 NSMutableURLRequest *request = [BooheeSessionDataTask requestWithRequestUrlString:[NSString stringWithFormat:@"%@?page=%d", self.requestURLString, i]];

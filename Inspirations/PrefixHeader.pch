@@ -38,6 +38,9 @@
 #import <YYText.h>
 #import <TFHpple.h>
 
+#import "SearchButton.h"
+
+#import "UIViewController+Navigation.h"
 
 #define PlaceHolderImage [UIImage imageNamed:@"PlaceHolder_Img"]
 

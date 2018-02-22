@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "RootCollectionViewController.h"
+#import "SearchListCollectionViewController.h"
 #import "RootNavigationController.h"
 #import "OAuth2VC.h"
 #import "EasyOAuthV2VC.h"
@@ -68,13 +68,10 @@
     
     [self performSelector:@selector(setNew) withObject:nil afterDelay:3];
     
-    RootCollectionViewController *rootVC = [[RootCollectionViewController alloc] init];
+//    SearchListCollectionViewController *rootVC = [[SearchListCollectionViewController alloc] init];
     FoodTableVC *foodTVC = [[FoodTableVC alloc] initWithStyle:UITableViewStylePlain];
-//    RootNavigationController *rootNC = [[RootNavigationController alloc] initWithRootViewController:rootVC];
     RootNavigationController *rootNC = [[RootNavigationController alloc] initWithRootViewController:foodTVC];
-    self.window.rootViewController = rootNC;
-    
-    
+    self.window.rootViewController = rootNC;    
     return YES;
 }
 

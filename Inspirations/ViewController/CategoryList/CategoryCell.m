@@ -18,14 +18,6 @@
 
 @implementation CategoryCell
 
-//-(instancetype)initWithStyle:(Easy3DSemicircleViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-//    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-//    if (self) {
-//
-//    }
-//    return self;
-//}
-
 
 - (void)configSubs{
     //初始化内部视图
@@ -65,7 +57,7 @@
         [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(titleLength, energyLength)];
         [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithWhite:0.8 alpha:1] range:NSMakeRange(titleLength, energyLength)];
         self.attrText = attrStr;
-        [self.imgV sd_setImageWithURL:model.imgURLString.mj_url placeholderImage:[UIImage imageNamed:@"DefaultLogin"]];
+        [self.imgV sd_setImageWithURL:model.imgURLString.mj_url placeholderImage:PlaceHolderImage];
     }
 }
 - (void)refreshLayout{

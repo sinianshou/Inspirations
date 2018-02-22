@@ -7,7 +7,8 @@
 //
 
 #import "EasyCollectionViewCell.h"
+#import "RootCollectionViewCell.h"
 
-@interface SearchListCollectionViewCell : EasyCollectionViewCell
+@interface SearchListCollectionViewCell : RootCollectionViewCell
 
 @end
